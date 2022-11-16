@@ -16,7 +16,12 @@ The workspace you opened from the button in this document is not entirely unprep
 
 In addition to the contents of the base image, and the sources from the GitHub repository for which the workspace was created there are some additional things installed. The installation took place when the workspace was started - when Gitpod executed the instructions in file `.gitpod.yml`. 
 
-Check out this file and see how it installs and runs MySQL and PostgreSQL and prints quite useless messages.
+Check out this file and see how it installs and runs MySQL and PostgreSQL, clones another GitHub repo and builds and runs a Web Application and also prints quite useless messages. A browser can be opened for port 3000 to show the web application. Check the URL that is loaded in the browser. 
+
+Also check the *ports* tab:
+![](images/ports-forwarding-ijnvscodebrowser.png)   
+
+Use `docker ps` to check the containers running: you have both a MySQL and a PostgreSQL database at your disposal in this workspace. And it would be very simple to run even more components.
 
 ## Open Gitpod Workspace in local VS Code Desktop
 
