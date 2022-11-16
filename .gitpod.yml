@@ -1,0 +1,32 @@
+tasks:
+  - init: |
+      docker pull mysql:latest
+      docker run --name your-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=mysecretpassword -d mysql:latest
+      docker run --name your-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+      git clone https://github.com/GermaVinsmoke/bmi-calculator
+
+  - name: Initialize 
+    command: |
+       echo "Almost ready - Running the MySQL and PostgreSQL container (note: when the workspace is first started up, these commands both fail - please ignore) "
+       docker start your-mysql
+       docker start your-postgres
+  - name: Run BMI Calculator WebApp
+    command: |
+       cd bmi-calculator
+       npm install
+       npm start
+  - name: Greeting 
+    command: |
+       echo "So nice to see you. How is everything?"
+       echo "Gitpod workspaces are pretty great!" >> new-file.txt
+
+
+ports:
+  # Some Web Application
+  - port: 3300
+    onOpen: open-preview
+    visibility: public
+
+vscode:
+  extensions:
+    - ms-azuretools.vscode-docker    
