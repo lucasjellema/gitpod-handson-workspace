@@ -1,9 +1,10 @@
 tasks:
   - init: |
+      git clone https://github.com/GermaVinsmoke/bmi-calculator
       docker pull mysql:latest
       docker run --name your-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=mysecretpassword -d mysql:latest
       docker run --name your-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres
-      git clone https://github.com/GermaVinsmoke/bmi-calculator
+
 
   - name: Initialize 
     command: |
@@ -12,6 +13,7 @@ tasks:
        docker start your-postgres
   - name: Run BMI Calculator WebApp
     command: |
+       sleep 5s
        cd bmi-calculator
        npm install
        npm start
@@ -22,8 +24,8 @@ tasks:
 
 
 ports:
-  # Some Web Application
-  - port: 3300
+  # BMI Calculator Web Application
+  - port: 3000
     onOpen: open-preview
     visibility: public
 
